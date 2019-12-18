@@ -1,6 +1,7 @@
 const puppeteer = require("puppeteer");
+const mainPage = require("../pages/mainPage")
 
-class serverDatabase {
+class serverDatabase extends mainPage{
     async typeDatabaseName(page, text){
         await page.type("#text_create_db", text);
     }

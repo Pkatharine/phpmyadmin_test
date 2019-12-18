@@ -6,16 +6,24 @@ var serverDatabase = new ServerDatabase();
 var leftPanel = new LeftPanel();
 
 (async () => {
-    const brower = await puppeteer.launch({
+    const browser = await puppeteer.launch({
         "headless": false
     });
-    const page = await brower.newPage();
+    const page = await browser.newPage();
     await page.goto("http://localhost/phpmyadmin/");
     
     await leftPanel.addDatabase(page);
-    await serverDatabase.typeDatabaseName(page, "newtable");
-    await serverDatabase.clickSubmit(page);
-    const selected =  leftPanel.getSelectedDatabase(page);
-    await console.log(selected);
+    await leftPanel.waitForSelector(page, "#text_create_db"); 
 
-})
+    await serverDatabase.typeDatabaseName(page, "142");
+    await serverDatabase.clickSubmit(page);
+    await serverDatabase.waitForSelector(page, "li.database.selected");
+
+    const selected =  leftPanel.getSelectedDatabase(page);
+    await selected;
+    selected.then(function(value) {
+        console.log(value); 
+       });
+    await browser.close();
+
+})();

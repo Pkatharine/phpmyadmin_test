@@ -1,12 +1,13 @@
 const puppeteer = require("puppeteer");
+const mainPage = require("../pages/mainPage")
 
-class leftPanel {
+class leftPanel extends mainPage{
     async addDatabase(page){
-        await page.click("//li[@class='first new_database italics']/div[2]/a");
+        await page.click("#pma_navigation_tree_content a.hover_show_full");
     }
 
     async getSelectedDatabase(page){
-        var selectedDatabase = await page.$eval("#pm_navigation_tree_content ul li.selected", 
+        var selectedDatabase = await page.$eval("li.database.selected", 
                         element => element.innerText);
         return selectedDatabase;
     }
