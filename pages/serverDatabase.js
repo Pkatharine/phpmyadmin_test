@@ -8,6 +8,10 @@ class serverDatabase extends mainPage{
     async clickSubmit(page){
         await page.click("#buttonGo");
     }
+
+    async clickSql(page){
+        await page.click("#topmenu li:nth-child(2) a.tab img.icon");
+    }
 }
 
 module.exports = serverDatabase;

@@ -2,6 +2,7 @@ const assert = require('assert')
 const puppeteer = require('puppeteer')
 const ServerDatabase = require("../pages/serverDatabase");
 const LeftPanel = require("../pages/leftPanel");
+const { expect } = require('chai');
 
 var browser;
 var page;
@@ -22,14 +23,14 @@ describe('create database', function()  {
         await leftPanel.addDatabase(page);
         await leftPanel.waitForSelector(page, "#text_create_db"); 
     
-        await serverDatabase.typeDatabaseName(page, "140");
+        await serverDatabase.typeDatabaseName(page, "11");
         await serverDatabase.clickSubmit(page);
         await serverDatabase.waitForSelector(page, "li.database.selected");
     
         const selected =  leftPanel.getSelectedDatabase(page);
         await selected;
         selected.then(function(value) {
-            assert('140', value);
+            expect(value).to.eql('11');
            });
    }).timeout(20000)
  })
