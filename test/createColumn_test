@@ -1,27 +1,26 @@
 const puppeteer = require("../node_modules/puppeteer");
-const DataBasesPage = require("../pages/dataBasesPage");
+const dataBasesPage = require("../pages/dataBasesPage");
 
-const createTableX = new DataBasesPage();
+//import dataBasesPage from dataBasesPage;
+
+
 //, args: ['--start-fullscreen']
 (async () => {
     // Pre-Cond
-    const browser = await puppeteer.launch({ headless: false, args: ['--start-fullscreen']});
+    let createTableX = new dataBasesPage();
+    const browser = await puppeteer.launch({headless: false});
     const page = await browser.newPage();
     await page.goto("http://localhost/phpmyadmin/db_structure.php?db=qwerty");
-    await page.setViewport({width: 1920, height: 1080});
+    await page.setViewport({width: 1420, height: 880});
 
     await createTableX.enterTableName(page, 'newTableX');
-    await createTableX.enterColomnNumber(page, '1');
+    await createTableX.enterColumnNumber(page, '');
     await createTableX.clickGo(page);
 
     //Begin Test:
     await page.waitForSelector("[id='field_0_1']");
-    await createTableX.enterColomnName(page, "qwerty");
+    await createTableX.enterColumnName(page, "qwerty");
 
-
-    // await page.screenshot({path: 'example.png'});
-    // await page.waitF("[name='do_save_data']");
-    await createTableX.clickSaveColomn();
-    // await createTableX.clickSaveColomn();
+    await createTableX.clickSaveColumn(page);
     await browser.close()
 })();

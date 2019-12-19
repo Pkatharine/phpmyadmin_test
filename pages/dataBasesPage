@@ -1,9 +1,9 @@
 const puppeteer = require("../node_modules/puppeteer");
 
 const createTableNameField = "[name='table']";
-const numberOfColomns = "[name='num_fields']";
+const numberOfColumns = "[name='num_fields']";
 const clickButtonGo = "input[type=submit]";
-const createColomnName = "[id='field_0_1']";
+const createColumnName = "[id='field_0_1']";
 // const buttonSaveColumn = "#page_content > form > fieldset > input[type=submit]:nth-child(2)";
 const buttonSaveColumn = "input[type=submit]";
 //create table
@@ -13,32 +13,25 @@ class CreateTable {
         await page.type(createTableNameField, text)
     }
 
-    async enterColomnNumber(page, text) {
-        await page.type(numberOfColomns, text)
+    async enterColumnNumber(page, text) {
+        await page.type(numberOfColumns, text)
     }
 
 //finish creation of table
     async clickGo(page) {
         await page.click(clickButtonGo)
-
-
     }
 
-    async enterColomnName(page, text) {
-        await page.click(createColomnName);
-        await page.type(createColomnName, text)
+    async enterColumnName(page, text) {
+        await page.click(createColumnName);
+        await page.type(createColumnName, text)
     }
 
-    async clickSaveColomn(page) {
+    async clickSaveColumn(page) {
         await page.click(buttonSaveColumn);
     }
 }
 
 module.exports = CreateTable;
 
-// class CreateColumn {
-//     async enterColomnName(page, text) {
-//         await page.click.type(createColomnName, text)
-//     }
-// }
 
