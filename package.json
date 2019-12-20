@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --timeout 0  ./test/bootstrap.js --recursive test --reporter mochawesome"
   },
   "devDependencies": {
     "mocha": "^6.2.2",
@@ -14,6 +14,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mysql": "^2.17.1"
+    "express": "^4.17.1",
+    "mochawesome": "^4.1.0",
+    "mysql": "^2.17.1",
+    "node-cmd": "^3.0.0",
+    "opn": "^6.0.0"
   }
 }

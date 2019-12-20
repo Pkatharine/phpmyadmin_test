@@ -1,5 +1,6 @@
 const puppeteer = require("puppeteer");
 const mainPage = require("../pages/mainPage");
+const ServerDatabase = require("../pages/serverDatabase");
 
 class leftPanel extends mainPage {
   async addDatabase(page) {

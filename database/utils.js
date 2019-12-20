@@ -1,4 +1,5 @@
 var mysql = require("mysql");
+
 class Database {
   async connect(databaseName) {
     this.databasename = databaseName;
